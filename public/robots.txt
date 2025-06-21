@@ -1,0 +1,65 @@
+# Robots.txt for השובך (The Shovach) - Wellness Center and Accommodation
+# https://theshovach.com/
+
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Allow important directories
+Allow: /wellness-center/
+Allow: /zimmer/
+Allow: /about/
+
+# Crawl delay (optional - be respectful to server resources)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://theshovach.com/sitemap.xml
+
+# Additional rules for specific bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block image-only crawlers from non-image content
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /images/
+Disallow: /
+
+User-agent: Bingbot-Image
+Allow: /assets/
+Allow: /images/
+Disallow: /
+
+# Block archive.org from archiving (optional)
+User-agent: ia_archiver
+Disallow: /
+
+# Block social media crawlers from certain areas
+User-agent: facebookexternalhit
+Allow: /
+Crawl-delay: 2
+
+User-agent: Twitterbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: LinkedInBot
+Allow: /
+Crawl-delay: 2 

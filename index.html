@@ -1,10 +1,150 @@
 <!doctype html>
-<html lang="en">
+<html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/shovach-logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+
+    <!-- Primary Meta Tags -->
+    <title>
+      השובך - מרכז בריאות ואירוח ייחודי | טיפולים מקצועיים וצימר כפרי
+    </title>
+    <meta
+      name="title"
+      content="השובך - מרכז בריאות ואירוח ייחודי | טיפולים מקצועיים וצימר כפרי"
+    />
+    <meta
+      name="description"
+      content="השובך - מרכז בריאות ואירוח ייחודי המציע טיפולי מסאז' רפואי, שיאצו, אבנים חמות וחמאם טורקי. יחידת אירוח כפרית לזוגות ומשפחות עם נוף מרהיב ושקט מושלם."
+    />
+    <meta
+      name="keywords"
+      content="השובך, מרכז בריאות, טיפולי מסאז', שיאצו, אבנים חמות, חמאם טורקי, צימר, אירוח כפרי, טיפולים מקצועיים, בריאות טבעית, ריפוי, מנוחה, התבוננות פנימית"
+    />
+    <meta name="author" content="השובך" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Hebrew" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://theshovach.com/" />
+    <meta property="og:title" content="השובך - מרכז בריאות ואירוח ייחודי" />
+    <meta
+      property="og:description"
+      content="מרכז בריאות ואירוח ייחודי המציע טיפולי מסאז' רפואי, שיאצו, אבנים חמות וחמאם טורקי. יחידת אירוח כפרית לזוגות ומשפחות."
+    />
+    <meta
+      property="og:image"
+      content="https://theshovach.com/shovach-logo.png"
+    />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="לוגו השובך - מרכז בריאות ואירוח" />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:site_name" content="השובך" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://theshovach.com/" />
+    <meta
+      property="twitter:title"
+      content="השובך - מרכז בריאות ואירוח ייחודי"
+    />
+    <meta
+      property="twitter:description"
+      content="מרכז בריאות ואירוח ייחודי המציע טיפולי מסאז' רפואי, שיאצו, אבנים חמות וחמאם טורקי."
+    />
+    <meta
+      property="twitter:image"
+      content="https://theshovach.com/shovach-logo.png"
+    />
+    <meta
+      property="twitter:image:alt"
+      content="לוגו השובך - מרכז בריאות ואירוח"
+    />
+
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#f59e0b" />
+    <meta name="msapplication-TileColor" content="#f59e0b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="השובך" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://theshovach.com/" />
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HealthAndBeautyBusiness",
+        "name": "השובך",
+        "description": "מרכז בריאות ואירוח ייחודי המציע טיפולי מסאז' רפואי, שיאצו, אבנים חמות וחמאם טורקי",
+        "url": "https://theshovach.com/",
+        "telephone": "+972-XX-XXXXXXX",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "IL",
+          "addressLocality": "ישראל"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "XX.XXXXX",
+          "longitude": "XX.XXXXX"
+        },
+        "openingHours": "Mo-Su 09:00-20:00",
+        "priceRange": "$$",
+        "currenciesAccepted": "ILS",
+        "paymentAccepted": "Cash, Credit Card",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "שירותי טיפול",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "מסאז' רפואי",
+                "description": "מסאז' רפואי מקצועי עם שמנים ארומתרפיים טבעיים"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "שיאצו",
+                "description": "טיפול מסורתי יפני"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "אבנים חמות",
+                "description": "טיפול מרגיע עם אבנים חמות"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "חמאם טורקי",
+                "description": "חמאם טורקי עם אדים חמים וטיפולי קילוף"
+              }
+            }
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/theshovach",
+          "https://www.instagram.com/theshovach"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

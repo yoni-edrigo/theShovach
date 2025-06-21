@@ -111,7 +111,11 @@ export function CustomNavbar() {
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3 }}
           >
-            <button className="absolute top-8 right-8" onClick={toggleMenu}>
+            <button
+              className="absolute top-8 right-8"
+              onClick={toggleMenu}
+              aria-label="סגור תפריט"
+            >
               <X className="h-8 w-8 text-gray-900" />
             </button>
             <nav className="flex flex-col items-center space-y-8 mt-8">

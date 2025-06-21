@@ -12,6 +12,9 @@ import {
   Home,
   Heart,
   Star,
+  Info,
+  AlertTriangle,
+  Shield,
 } from "lucide-react";
 import { StickyFooter } from "@/components/StickyFooter";
 
@@ -60,7 +63,9 @@ function RouteComponent() {
                 <p className="text-lg text-muted-foreground mb-6">
                   הקומה התחתונה במרכז משמשת כצימר/יחידת אירוח, הבנויה בסגנון
                   מקומי בשילוב אבן וטיח. המקום מתאים לזוג או זוג עם ילד, עם
-                  אבזור ברמה גבוהה.
+                  אבזור ברמה גבוהה וכולל מטבחון (גם פלטה ומיחם תמצאו בו),
+                  שירותים ומקלחת, פינת קפה, מיטה זוגית, מזגן, פינת ישיבה ומרפסת
+                  פתוחה לנוף. היחידה מאפשרת שקט וזמן להתבוננות פנימית.
                 </p>
 
                 <div className="space-y-4">
@@ -81,7 +86,7 @@ function RouteComponent() {
                     <div>
                       <h3 className="font-medium mb-1">אבזור ברמה גבוהה</h3>
                       <p className="text-muted-foreground">
-                        כל מה שצריך לשהייה נוחה
+                        כל מה שצריך לשהייה נוחה ומהנה
                       </p>
                     </div>
                   </div>
@@ -207,8 +212,103 @@ function RouteComponent() {
           </div>
         </section>
 
-        {/* Experience Section */}
+        {/* Important Information Section */}
         <section className="py-20">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-4">חשוב לדעת</h2>
+              <p className="text-lg text-muted-foreground">
+                מידע חשוב לאירוח מושלם
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="max-w-4xl mx-auto space-y-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="p-6 bg-card rounded-xl border border-orange-200">
+                <div className="flex items-start gap-4">
+                  <Info className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium mb-2 text-orange-700">
+                      מצעים ומגבות
+                    </h3>
+                    <p className="text-muted-foreground">
+                      האירוח אינו כולל מצעים ומגבות, במידת הצורך ניתן לתאם מראש.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-card rounded-xl border border-blue-200">
+                <div className="flex items-start gap-4">
+                  <Shield className="w-6 h-6 text-blue-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium mb-2 text-blue-700">
+                      שכונה שקטה ושומרת שבת
+                    </h3>
+                    <p className="text-muted-foreground">
+                      המרכז נמצא בשכונת מגורים שקטה ושומרת שבת. נבקש את
+                      התחשבותכם.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-card rounded-xl border border-red-200">
+                <div className="flex items-start gap-4">
+                  <AlertTriangle className="w-6 h-6 text-red-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium mb-2 text-red-700">נגישות</h3>
+                    <p className="text-muted-foreground">
+                      לצערינו כרגע המקום לא מונגש לנכים.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-card rounded-xl border border-green-200">
+                <div className="flex items-start gap-4">
+                  <Heart className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium mb-2 text-green-700">
+                      בעלי חיים
+                    </h3>
+                    <p className="text-muted-foreground">
+                      אין להכניס בעלי חיים, יש כאן מספיק ;)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-card rounded-xl border border-purple-200">
+                <div className="flex items-start gap-4">
+                  <Star className="w-6 h-6 text-purple-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium mb-2 text-purple-700">
+                      השכרת הקליניקה
+                    </h3>
+                    <p className="text-muted-foreground">
+                      ניתן לשכור גם את הקליניקה לארוח מורחב.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section className="py-20 bg-card">
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center max-w-4xl mx-auto"
@@ -224,7 +324,7 @@ function RouteComponent() {
               </p>
 
               <div className="grid md:grid-cols-2 gap-8 mt-12">
-                <div className="text-center p-6 bg-card rounded-xl border">
+                <div className="text-center p-6 bg-background rounded-xl border">
                   <Mountain className="w-12 h-12 text-primary mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2">נוף כפרי</h3>
                   <p className="text-muted-foreground">
@@ -232,59 +332,13 @@ function RouteComponent() {
                   </p>
                 </div>
 
-                <div className="text-center p-6 bg-card rounded-xl border">
+                <div className="text-center p-6 bg-background rounded-xl border">
                   <Heart className="w-12 h-12 text-primary mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2">שקט ושלווה</h3>
                   <p className="text-muted-foreground">
                     מקום מושלם למנוחה, התבוננות והתחדשות
                   </p>
                 </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Contact & Info Section */}
-        <section className="py-20 bg-card">
-          <div className="container mx-auto px-4">
-            <motion.div
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl font-bold mb-4">מידע נוסף</h2>
-              <p className="text-lg text-muted-foreground">
-                לקבלת מידע נוסף והזמנות
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="text-center p-6 bg-background rounded-xl border">
-                <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
-                <h3 className="font-medium mb-2">מיקום</h3>
-                <p className="text-muted-foreground">המרכז ממוקם בנוף הכפרי</p>
-              </div>
-
-              <div className="text-center p-6 bg-background rounded-xl border">
-                <Clock className="w-8 h-8 text-primary mx-auto mb-4" />
-                <h3 className="font-medium mb-2">שעות פעילות</h3>
-                <p className="text-muted-foreground">
-                  אירוח 24/7, כניסה מגיל 18
-                </p>
-              </div>
-
-              <div className="text-center p-6 bg-background rounded-xl border">
-                <Phone className="w-8 h-8 text-primary mx-auto mb-4" />
-                <h3 className="font-medium mb-2">צור קשר</h3>
-                <p className="text-muted-foreground">להזמנות ומידע נוסף</p>
               </div>
             </motion.div>
           </div>
@@ -302,7 +356,7 @@ function RouteComponent() {
             >
               <h2 className="text-3xl font-bold mb-4">צור קשר</h2>
               <p className="text-muted-foreground mb-8">
-                מוכנים לחוויית אירוח ייחודית? צרו קשר עכשיו
+                לכל שאלה ומידע נוסף נשמח לעזור
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <div className="flex items-center gap-2">

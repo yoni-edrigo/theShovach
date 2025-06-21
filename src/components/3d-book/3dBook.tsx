@@ -8,7 +8,7 @@ export function Book3D() {
           <div className="book-cover">
             <div className="book-inside"></div>
             <div className="book-image">
-              <img src={BookCover} />
+              <img src={BookCover} alt="כריכת הספר נהגת חייך" />
               <div className="effect"></div>
               <div className="light"></div>
             </div>

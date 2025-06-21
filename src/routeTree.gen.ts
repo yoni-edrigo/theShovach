@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ZimmerRouteImport } from './routes/zimmer'
 import { Route as WellnessCenterRouteImport } from './routes/wellness-center'
+import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
+import { Route as AccessebilityRouteImport } from './routes/accessebility'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +24,16 @@ const ZimmerRoute = ZimmerRouteImport.update({
 const WellnessCenterRoute = WellnessCenterRouteImport.update({
   id: '/wellness-center',
   path: '/wellness-center',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
+  id: '/terms-of-service',
+  path: '/terms-of-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccessebilityRoute = AccessebilityRouteImport.update({
+  id: '/accessebility',
+  path: '/accessebility',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -38,12 +50,16 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/accessebility': typeof AccessebilityRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
   '/wellness-center': typeof WellnessCenterRoute
   '/zimmer': typeof ZimmerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/accessebility': typeof AccessebilityRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
   '/wellness-center': typeof WellnessCenterRoute
   '/zimmer': typeof ZimmerRoute
 }
@@ -51,20 +67,43 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/accessebility': typeof AccessebilityRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
   '/wellness-center': typeof WellnessCenterRoute
   '/zimmer': typeof ZimmerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/wellness-center' | '/zimmer'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/accessebility'
+    | '/terms-of-service'
+    | '/wellness-center'
+    | '/zimmer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/wellness-center' | '/zimmer'
-  id: '__root__' | '/' | '/about' | '/wellness-center' | '/zimmer'
+  to:
+    | '/'
+    | '/about'
+    | '/accessebility'
+    | '/terms-of-service'
+    | '/wellness-center'
+    | '/zimmer'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/accessebility'
+    | '/terms-of-service'
+    | '/wellness-center'
+    | '/zimmer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AccessebilityRoute: typeof AccessebilityRoute
+  TermsOfServiceRoute: typeof TermsOfServiceRoute
   WellnessCenterRoute: typeof WellnessCenterRoute
   ZimmerRoute: typeof ZimmerRoute
 }
@@ -83,6 +122,20 @@ declare module '@tanstack/react-router' {
       path: '/wellness-center'
       fullPath: '/wellness-center'
       preLoaderRoute: typeof WellnessCenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-of-service': {
+      id: '/terms-of-service'
+      path: '/terms-of-service'
+      fullPath: '/terms-of-service'
+      preLoaderRoute: typeof TermsOfServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accessebility': {
+      id: '/accessebility'
+      path: '/accessebility'
+      fullPath: '/accessebility'
+      preLoaderRoute: typeof AccessebilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -105,6 +158,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AccessebilityRoute: AccessebilityRoute,
+  TermsOfServiceRoute: TermsOfServiceRoute,
   WellnessCenterRoute: WellnessCenterRoute,
   ZimmerRoute: ZimmerRoute,
 }

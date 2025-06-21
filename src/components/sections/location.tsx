@@ -94,14 +94,14 @@ export function Location() {
             </motion.h2>
             <motion.p
               variants={itemVariants}
-              className="text-xl text-gray-600 max-w-2xl mx-auto"
+              className="text-xl text-gray-700 max-w-2xl mx-auto"
             >
               נמצאים בלב מדבר יהודה, מוכנים לספק לכם את חווית האירוח הטובה ביותר
             </motion.p>
           </motion.div>
 
           <div className="h-96 bg-gray-200 rounded-2xl flex items-center justify-center">
-            <div className="text-gray-500">טוען מפה...</div>
+            <div className="text-gray-600">טוען מפה...</div>
           </div>
         </div>
       </section>
@@ -126,7 +126,7 @@ export function Location() {
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            className="text-xl text-gray-700 max-w-2xl mx-auto"
           >
             נמצאים בלב מדבר יהודה, מוכנים לספק לכם את חווית האירוח הטובה ביותר
           </motion.p>

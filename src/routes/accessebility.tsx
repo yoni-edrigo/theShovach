@@ -11,7 +11,7 @@ function RouteComponent() {
   return (
     <div className="relative">
       {/* Main content that sits on top of the footer */}
-      <main className="relative z-10 min-h-screen bg-background">
+      <main className="relative z-10 min-h-screen bg-background pt-20 md:pt-0">
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-b from-primary/10 to-background">
           <div className="container mx-auto px-4">

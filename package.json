@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.14.1",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
@@ -23,6 +24,7 @@
     "convex": "^1.24.8",
     "framer-motion": "^12.18.1",
     "leaflet": "^1.9.4",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.518.0",
     "motion": "^12.18.1",
     "react": "^19.1.0",

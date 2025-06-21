@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ZimmerRouteImport } from './routes/zimmer'
 import { Route as WellnessCenterRouteImport } from './routes/wellness-center'
 import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AccessebilityRouteImport } from './routes/accessebility'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -29,6 +31,16 @@ const WellnessCenterRoute = WellnessCenterRouteImport.update({
 const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
   id: '/terms-of-service',
   path: '/terms-of-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccessebilityRoute = AccessebilityRouteImport.update({
@@ -51,6 +63,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/accessebility': typeof AccessebilityRoute
+  '/contact': typeof ContactRoute
+  '/partners': typeof PartnersRoute
   '/terms-of-service': typeof TermsOfServiceRoute
   '/wellness-center': typeof WellnessCenterRoute
   '/zimmer': typeof ZimmerRoute
@@ -59,6 +73,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/accessebility': typeof AccessebilityRoute
+  '/contact': typeof ContactRoute
+  '/partners': typeof PartnersRoute
   '/terms-of-service': typeof TermsOfServiceRoute
   '/wellness-center': typeof WellnessCenterRoute
   '/zimmer': typeof ZimmerRoute
@@ -68,6 +84,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/accessebility': typeof AccessebilityRoute
+  '/contact': typeof ContactRoute
+  '/partners': typeof PartnersRoute
   '/terms-of-service': typeof TermsOfServiceRoute
   '/wellness-center': typeof WellnessCenterRoute
   '/zimmer': typeof ZimmerRoute
@@ -78,6 +96,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/accessebility'
+    | '/contact'
+    | '/partners'
     | '/terms-of-service'
     | '/wellness-center'
     | '/zimmer'
@@ -86,6 +106,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/accessebility'
+    | '/contact'
+    | '/partners'
     | '/terms-of-service'
     | '/wellness-center'
     | '/zimmer'
@@ -94,6 +116,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/accessebility'
+    | '/contact'
+    | '/partners'
     | '/terms-of-service'
     | '/wellness-center'
     | '/zimmer'
@@ -103,6 +127,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AccessebilityRoute: typeof AccessebilityRoute
+  ContactRoute: typeof ContactRoute
+  PartnersRoute: typeof PartnersRoute
   TermsOfServiceRoute: typeof TermsOfServiceRoute
   WellnessCenterRoute: typeof WellnessCenterRoute
   ZimmerRoute: typeof ZimmerRoute
@@ -129,6 +155,20 @@ declare module '@tanstack/react-router' {
       path: '/terms-of-service'
       fullPath: '/terms-of-service'
       preLoaderRoute: typeof TermsOfServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/accessebility': {
@@ -159,6 +199,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccessebilityRoute: AccessebilityRoute,
+  ContactRoute: ContactRoute,
+  PartnersRoute: PartnersRoute,
   TermsOfServiceRoute: TermsOfServiceRoute,
   WellnessCenterRoute: WellnessCenterRoute,
   ZimmerRoute: ZimmerRoute,

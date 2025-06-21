@@ -24,7 +24,7 @@ export function CustomNavbar() {
     { label: "אודותינו", to: "/about" },
     { label: "צימר", to: "/zimmer" },
     { label: "מרכז גוף-נפש", to: "/wellness-center" },
-    { label: "עסקים באיזור", to: "/pricing" },
+    { label: "עסקים באיזור", to: "/partners" },
   ];
 
   // Determine navbar styles based on scroll and hover state
@@ -134,7 +134,7 @@ export function CustomNavbar() {
             whileHover={{ scale: 1.05 }}
           >
             <Link
-              to="/"
+              to="/contact"
               className={`inline-flex items-center justify-center px-5 py-2 text-sm rounded-full transition-colors ${
                 isScrolled && !isHovered
                   ? "text-black bg-white hover:bg-gray-100"
@@ -185,7 +185,7 @@ export function CustomNavbar() {
                 </Link>
               ))}
               <Link
-                to="/"
+                to="/contact"
                 className="inline-flex items-center justify-center px-5 py-2 text-sm text-white bg-black rounded-full hover:bg-gray-800 transition-colors mt-4"
                 onClick={toggleMenu}
               >

@@ -64,40 +64,42 @@ export function ServicesSection() {
           <CircularServices testimonials={services} />
         </motion.div>
 
-        {/* CTA Section */}
+        {/* Simple Modern CTA Section */}
         <motion.div
-          className="mt-20 bg-card text-card-foreground p-8 rounded-xl border shadow-lg"
+          className="bg-gradient-to-br from-card to-card/80 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
         >
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-medium mb-2">
-              למד עוד על השירותים שלנו
-            </h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-3xl font-bold mb-4">מוכנים לחוויה ייחודית?</h3>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               גלה את הטיפולים המקצועיים שלנו ואת יחידת האירוח הייחודית
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/wellness-center">
-              <Button className="flex items-center gap-2 cursor-pointer">
-                <Building2 className="w-4 h-4" />
+              <Button
+                size="lg"
+                className="flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-4 rounded-xl transition-all duration-300"
+              >
+                <Building2 className="w-5 h-5" />
                 מרכז הטיפולים
-                <ArrowLeft className="w-4 h-4" />
+                <ArrowLeft className="w-5 h-5" />
               </Button>
             </Link>
 
             <Link to="/zimmer">
               <Button
                 variant="outline"
-                className="flex items-center gap-2 cursor-pointer"
+                size="lg"
+                className="flex items-center gap-3 border-2 border-border hover:border-primary/50 font-semibold px-8 py-4 rounded-xl transition-all duration-300"
               >
-                <Home className="w-4 h-4" />
+                <Home className="w-5 h-5" />
                 יחידת האירוח
-                <ArrowLeft className="w-4 h-4" />
+                <ArrowLeft className="w-5 h-5" />
               </Button>
             </Link>
           </div>

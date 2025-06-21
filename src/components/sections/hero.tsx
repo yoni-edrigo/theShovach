@@ -26,7 +26,7 @@ export function HeroSection() {
       >
         <BreathingText
           as="h1"
-          className="text-white font-black text-[20vw] absolute -top-20 sm:relative drop-shadow-lg"
+          className="text-white font-black text-[20vw] absolute -top-20 sm:static drop-shadow-lg"
           lightFontClass="font-hug-regular"
           heavyFontClass="font-hug-color"
           transition={{ duration: 2, ease: "easeInOut" }}
@@ -36,7 +36,7 @@ export function HeroSection() {
         >
           השובך
         </BreathingText>
-        <span className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center absolute bottom-8 sm:bottom-20 left-1/2 -translate-x-1/2 sm:relative sm:left-auto sm:-translate-x-0 px-4 sm:px-0">
+        <span className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center absolute bottom-8 sm:static sm:mt-8 left-1/2 -translate-x-1/2 sm:left-auto sm:-translate-x-0 px-4 sm:px-0">
           <Button
             className="group relative overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 hover:border-white/40 transition-all duration-300 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl sm:rounded-3xl font-medium sm:font-semibold shadow-lg hover:shadow-xl text-base sm:text-lg w-full sm:w-auto drop-shadow-md"
             size="lg"

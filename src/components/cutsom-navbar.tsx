@@ -1,12 +1,23 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 
 export function CustomNavbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const toggleMenu = () => setIsOpen((v) => !v);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { label: "בית", to: "/" },
@@ -16,10 +27,50 @@ export function CustomNavbar() {
     { label: "עסקים באיזור", to: "/pricing" },
   ];
 
+  // Determine navbar styles based on scroll and hover state
+  const getNavbarStyles = () => {
+    if (isHovered) {
+      // Original state on hover
+      return {
+        bg: "bg-white",
+        text: "text-gray-900",
+        border: "",
+        shadow: "shadow-lg",
+      };
+    }
+
+    if (isScrolled) {
+      // Darker semi-transparent state for better contrast
+      return {
+        bg: "bg-black/20 backdrop-blur-md",
+        text: "text-white",
+        border: "border border-white/20",
+        shadow: "",
+      };
+    }
+
+    // Default state
+    return {
+      bg: "bg-white",
+      text: "text-gray-900",
+      border: "",
+      shadow: "shadow-lg",
+    };
+  };
+
+  const styles = getNavbarStyles();
+
   return (
     <>
       <div className="flex justify-center w-full py-6 px-4 fixed top-0 left-0 z-20 pointer-events-none">
-        <div className="flex flex-row-reverse sm:flex-row items-center justify-between px-6 py-3 bg-white rounded-full shadow-lg w-full max-w-3xl relative z-10 pointer-events-auto">
+        <motion.div
+          className={`flex flex-row-reverse sm:flex-row items-center justify-between px-6 py-3 rounded-full w-full max-w-3xl relative z-10 pointer-events-auto transition-all duration-300 ${styles.bg} ${styles.border} ${styles.shadow}`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          initial={{ scale: 0.8 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.3 }}
+        >
           {/* Circle Logo - Left side on mobile and desktop */}
           <div className="flex items-center">
             <motion.div
@@ -66,7 +117,7 @@ export function CustomNavbar() {
               >
                 <Link
                   to={item.to}
-                  className="text-sm text-gray-900 hover:text-gray-600 transition-colors font-medium"
+                  className={`text-sm transition-colors font-medium hover:opacity-80 ${styles.text}`}
                 >
                   {item.label}
                 </Link>
@@ -84,7 +135,11 @@ export function CustomNavbar() {
           >
             <Link
               to="/"
-              className="inline-flex items-center justify-center px-5 py-2 text-sm text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
+              className={`inline-flex items-center justify-center px-5 py-2 text-sm rounded-full transition-colors ${
+                isScrolled && !isHovered
+                  ? "text-black bg-white hover:bg-gray-100"
+                  : "text-white bg-black hover:bg-gray-800"
+              }`}
             >
               צור קשר
             </Link>
@@ -96,9 +151,9 @@ export function CustomNavbar() {
             onClick={toggleMenu}
             whileTap={{ scale: 0.9 }}
           >
-            <Menu className="h-6 w-6 text-gray-900" />
+            <Menu className={`h-6 w-6 transition-colors ${styles.text}`} />
           </motion.button>
-        </div>
+        </motion.div>
       </div>
 
       {/* Mobile Menu Overlay - Positioned outside navbar container */}

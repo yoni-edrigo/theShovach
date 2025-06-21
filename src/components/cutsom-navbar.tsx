@@ -10,91 +10,98 @@ export function CustomNavbar() {
 
   const navItems = [
     { label: "בית", to: "/" },
-    { label: "אודותינו", to: "/pricing" },
+    { label: "אודותינו", to: "/about" },
     { label: "צימר", to: "/zimmer" },
     { label: "מרכז גוף-נפש", to: "/wellness-center" },
     { label: "עסקים באיזור", to: "/pricing" },
   ];
 
   return (
-    <div className="flex justify-center w-full py-6 px-4 fixed top-0 left-0 z-20 pointer-events-none">
-      <div className="flex items-center justify-between px-6 py-3 bg-white rounded-full shadow-lg w-full max-w-3xl relative z-10 pointer-events-auto">
-        <div className="flex items-center">
-          <motion.div
-            className="w-8 h-8 mr-6"
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            whileHover={{ rotate: 10 }}
-            transition={{ duration: 0.3 }}
-          >
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="16" cy="16" r="16" fill="url(#paint0_linear)" />
-              <defs>
-                <linearGradient
-                  id="paint0_linear"
-                  x1="0"
-                  y1="0"
-                  x2="32"
-                  y2="32"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#FF9966" />
-                  <stop offset="1" stopColor="#FF5E62" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </motion.div>
-        </div>
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
+    <>
+      <div className="flex justify-center w-full py-6 px-4 fixed top-0 left-0 z-20 pointer-events-none">
+        <div className="flex flex-row-reverse sm:flex-row items-center justify-between px-6 py-3 bg-white rounded-full shadow-lg w-full max-w-3xl relative z-10 pointer-events-auto">
+          {/* Circle Logo - Left side on mobile and desktop */}
+          <div className="flex items-center">
             <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
+              className="w-8 h-8 mr-6"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              whileHover={{ rotate: 10 }}
               transition={{ duration: 0.3 }}
-              whileHover={{ scale: 1.05 }}
             >
-              <Link
-                to={item.to}
-                className="text-sm text-gray-900 hover:text-gray-600 transition-colors font-medium"
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                {item.label}
-              </Link>
+                <circle cx="16" cy="16" r="16" fill="url(#paint0_linear)" />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear"
+                    x1="0"
+                    y1="0"
+                    x2="32"
+                    y2="32"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#FF9966" />
+                    <stop offset="1" stopColor="#FF5E62" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </motion.div>
-          ))}
-        </nav>
-        {/* Desktop CTA Button */}
-        <motion.div
-          className="hidden md:block"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-          whileHover={{ scale: 1.05 }}
-        >
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center px-5 py-2 text-sm text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <Link
+                  to={item.to}
+                  className="text-sm text-gray-900 hover:text-gray-600 transition-colors font-medium"
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
+            ))}
+          </nav>
+
+          {/* Desktop CTA Button */}
+          <motion.div
+            className="hidden md:block"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
           >
-            צור קשר
-          </Link>
-        </motion.div>
-        {/* Mobile Menu Button */}
-        <motion.button
-          className="md:hidden flex items-center"
-          onClick={toggleMenu}
-          whileTap={{ scale: 0.9 }}
-        >
-          <Menu className="h-6 w-6 text-gray-900" />
-        </motion.button>
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center px-5 py-2 text-sm text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
+            >
+              צור קשר
+            </Link>
+          </motion.div>
+
+          {/* Mobile Menu Button - Right side */}
+          <motion.button
+            className="md:hidden flex items-center"
+            onClick={toggleMenu}
+            whileTap={{ scale: 0.9 }}
+          >
+            <Menu className="h-6 w-6 text-gray-900" />
+          </motion.button>
+        </div>
       </div>
-      {/* Mobile Menu Overlay */}
+
+      {/* Mobile Menu Overlay - Positioned outside navbar container */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -129,6 +136,6 @@ export function CustomNavbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 }

@@ -27,10 +27,7 @@ const services = [
 export function Services() {
   return (
     <section className=" p-20 rounded-lg min-h-[300px] flex flex-wrap gap-6 items-center justify-center relative">
-      <div
-        className="items-center justify-center relative flex"
-        style={{ maxWidth: "1456px" }}
-      >
+      <div className="items-center justify-center relative flex max-w-4xl">
         <CircularServices testimonials={services} autoplay={true} />
       </div>
     </section>

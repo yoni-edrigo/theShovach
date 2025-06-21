@@ -1,8 +1,10 @@
 import { HeroSection } from "@/components/sections/hero";
-import { Services } from "@/components/sections/services";
+import { ServicesSection } from "@/components/sections/services";
 import { Location } from "@/components/sections/location";
 import { StickyFooter } from "@/components/StickyFooter";
 import { createFileRoute } from "@tanstack/react-router";
+import { BookSection } from "@/components/sections/book";
+import { BornToSection } from "@/components/sections/bornTo";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -14,11 +16,11 @@ function Index() {
       {/* Main content that sits on top of the footer */}
       <main className="relative z-10 min-h-screen bg-gradient-to-b from-yellow-50 to-orange-100 text-balance">
         <HeroSection />
-        <Services />
+        <ServicesSection />
+        <BornToSection />
+        <BookSection />
+
         <Location />
-        <section className="h-screen bg-green-100 flex items-center justify-center">
-          <h2 className="text-4xl font-bold">Section 3</h2>
-        </section>
       </main>
 
       {/* Stickyr that sits behind the main content */}

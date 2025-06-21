@@ -1,34 +1,107 @@
 import CircularServices from "../circular-testimonials";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Building2, Sparkles, Home } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { motion } from "motion/react";
 
 const services = [
   {
     quote:
-      "מסאז' רפואי מקצועי עם שמנים ארומתרפיים טבעיים. הטיפול מותאם אישית לכל לקוח ומשלב טכניקות מסורתיות עם ידע מודרני ליצירת חוויה מרגיעה ומחדשת.",
+      "מסאז' רפואי מקצועי עם שמנים ארומתרפיים טבעיים. הטיפול מותאם אישית לכל לקוח ומשלב טכניקות מסורתיות עם ידע מודרני ליצירת חוויה מרגיעה ומחדשת. מתבצע בקליניקה המקצועית בקומה העליונה עם מיטת שיאצו, אבנים חמות ומיטת עיסוי.",
     name: "מסאז' רפואי",
     designation: "60-90 דקות",
     src: "https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?q=80&w=1368&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     quote:
-      "חמאם טורקי מסורתי עם אדים חמים וטיפולי קילוף טבעי. החוויה כוללת חדרי אדים, בריכת מים חמים, וטיפול קילוף עם סבון אוליב מסורתי לרענון עמוק של העור.",
-    name: "חמאם טורקי",
-    designation: "90 דקות",
-    src: "https://images.unsplash.com/photo-1628749528992-f5702133b686?q=80&w=1368&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D",
+      "אירוח בצימר פרטי בקומה התחתונה בסגנון מקומי עם אבן וטיח. מתאים לזוג או זוג עם ילד. כולל מטבחון מלא, שירותים ומקלחת, פינת קפה, מיטה זוגית, מזגן, פינת ישיבה ומרפסת לנוף. מקום מושלם לשקט והתבוננות פנימית.",
+    name: "צימר אירוח",
+    designation: "לילה/סוף שבוע",
+    src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     quote:
-      "טיפולי ארומתרפיה עם שמנים אתריים טבעיים מהמדבר. הטיפול משלב עיסוי עדין עם שמנים ארומתרפיים מותאמים אישית ליצירת הרפיה עמוקה וטיהור הנפש והגוף.",
-    name: "ארומתרפיה מדברית",
-    designation: "75 דקות",
-    src: "https://images.unsplash.com/photo-1524267213992-b76e8577d046?q=80&w=1368&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D",
+      "סדנאות וטיפולים בקליניקה המקצועית בקומה העליונה. החדר מאובזר במטבחון, פינת קפה, שירותים, מקלחת ומיטת טיפול. כולל מגוון רחב של ספרים מתחום הטיפול ללמידה והתפתחות אישית.",
+    name: "קליניקה וסדנאות",
+    designation: "גמיש",
+    src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
-export function Services() {
+export function ServicesSection() {
   return (
-    <section className=" p-20 rounded-lg min-h-[300px] flex flex-wrap gap-6 items-center justify-center relative">
-      <div className="items-center justify-center relative flex max-w-4xl">
-        <CircularServices testimonials={services} autoplay={true} />
+    <section className="py-24 bg-gradient-to-b from-background to-muted/20">
+      <div className="container mx-auto px-4 place-items-center">
+        {/* Header Section */}
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Sparkles className="w-4 h-4" />
+            השירותים שלנו
+          </div>
+          <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+            חוויה ייחודית של ריפוי
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            מגוון רחב של טיפולים מקצועיים ואירוח ייחודי במרכז הבריאות שלנו,
+            המשלב מסורת עתיקה עם טכנולוגיה מודרנית
+          </p>
+        </motion.div>
+
+        {/* Services Carousel */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mb-20"
+        >
+          <CircularServices testimonials={services} />
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="mt-20 bg-card text-card-foreground p-8 rounded-xl border shadow-lg"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-medium mb-2">
+              למד עוד על השירותים שלנו
+            </h3>
+            <p className="text-muted-foreground">
+              גלה את הטיפולים המקצועיים שלנו ואת יחידת האירוח הייחודית
+            </p>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <Link to="/wellness-center">
+              <Button className="flex items-center gap-2 cursor-pointer">
+                <Building2 className="w-4 h-4" />
+                מרכז הטיפולים
+                <ArrowLeft className="w-4 h-4" />
+              </Button>
+            </Link>
+
+            <Link to="/zimmer">
+              <Button
+                variant="outline"
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <Home className="w-4 h-4" />
+                יחידת האירוח
+                <ArrowLeft className="w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

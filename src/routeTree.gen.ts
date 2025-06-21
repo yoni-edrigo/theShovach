@@ -9,9 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ZimmerRouteImport } from './routes/zimmer'
+import { Route as WellnessCenterRouteImport } from './routes/wellness-center'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ZimmerRoute = ZimmerRouteImport.update({
+  id: '/zimmer',
+  path: '/zimmer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WellnessCenterRoute = WellnessCenterRouteImport.update({
+  id: '/wellness-center',
+  path: '/wellness-center',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -26,31 +38,53 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/wellness-center': typeof WellnessCenterRoute
+  '/zimmer': typeof ZimmerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/wellness-center': typeof WellnessCenterRoute
+  '/zimmer': typeof ZimmerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/wellness-center': typeof WellnessCenterRoute
+  '/zimmer': typeof ZimmerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/about' | '/wellness-center' | '/zimmer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/about' | '/wellness-center' | '/zimmer'
+  id: '__root__' | '/' | '/about' | '/wellness-center' | '/zimmer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  WellnessCenterRoute: typeof WellnessCenterRoute
+  ZimmerRoute: typeof ZimmerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/zimmer': {
+      id: '/zimmer'
+      path: '/zimmer'
+      fullPath: '/zimmer'
+      preLoaderRoute: typeof ZimmerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wellness-center': {
+      id: '/wellness-center'
+      path: '/wellness-center'
+      fullPath: '/wellness-center'
+      preLoaderRoute: typeof WellnessCenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -71,6 +105,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  WellnessCenterRoute: WellnessCenterRoute,
+  ZimmerRoute: ZimmerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

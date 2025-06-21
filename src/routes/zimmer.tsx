@@ -1,0 +1,330 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "motion/react";
+import {
+  Bed,
+  Coffee,
+  Wifi,
+  Mountain,
+  Users,
+  MapPin,
+  Clock,
+  Phone,
+  Home,
+  Heart,
+  Star,
+} from "lucide-react";
+import { StickyFooter } from "@/components/StickyFooter";
+
+export const Route = createFileRoute("/zimmer")({
+  component: RouteComponent,
+});
+
+function RouteComponent() {
+  return (
+    <div className="relative">
+      {/* Main content that sits on top of the footer */}
+      <main className="relative z-10 min-h-screen bg-background">
+        {/* Hero Section */}
+        <section className="relative py-20 bg-gradient-to-b from-primary/10 to-background">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-5xl font-bold mb-6">צימר השובך</h1>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                יחידת אירוח ייחודית בסגנון מקומי עם כל האמצעים לשקט והתבוננות
+                פנימית
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Zimmer Overview */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="grid lg:grid-cols-2 gap-12 items-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <Home className="w-8 h-8 text-primary" />
+                  <h2 className="text-3xl font-bold">יחידת אירוח ייחודית</h2>
+                </div>
+                <p className="text-lg text-muted-foreground mb-6">
+                  הקומה התחתונה במרכז משמשת כצימר/יחידת אירוח, הבנויה בסגנון
+                  מקומי בשילוב אבן וטיח. המקום מתאים לזוג או זוג עם ילד, עם
+                  אבזור ברמה גבוהה.
+                </p>
+
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Users className="w-5 h-5 text-primary mt-1" />
+                    <div>
+                      <h3 className="font-medium mb-1">
+                        מתאים לזוג או זוג עם ילד
+                      </h3>
+                      <p className="text-muted-foreground">
+                        אירוח אינטימי ומשפחתי
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Star className="w-5 h-5 text-primary mt-1" />
+                    <div>
+                      <h3 className="font-medium mb-1">אבזור ברמה גבוהה</h3>
+                      <p className="text-muted-foreground">
+                        כל מה שצריך לשהייה נוחה
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Heart className="w-5 h-5 text-primary mt-1" />
+                    <div>
+                      <h3 className="font-medium mb-1">שקט וזמן להתבוננות</h3>
+                      <p className="text-muted-foreground">
+                        מקום מושלם למנוחה והתחדשות
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="צימר אירוח"
+                  className="rounded-xl shadow-lg"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Amenities Section */}
+        <section className="py-20 bg-card">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-4">האמצעים שלנו</h2>
+              <p className="text-lg text-muted-foreground">
+                כל מה שצריך לשהייה נוחה ומהנה
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="p-6 bg-background rounded-xl border hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <Coffee className="w-6 h-6 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-2">מטבחון מלא</h3>
+                    <p className="text-muted-foreground">
+                      כולל פלטה ומיחם להכנת ארוחות
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-background rounded-xl border hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <Bed className="w-6 h-6 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-2">מיטה זוגית</h3>
+                    <p className="text-muted-foreground">
+                      נוחה ומזמינה לשינה רגועה
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-background rounded-xl border hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <Wifi className="w-6 h-6 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-2">מזגן ופינת ישיבה</h3>
+                    <p className="text-muted-foreground">
+                      נוחות מקסימלית בכל עונה
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-background rounded-xl border hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <Mountain className="w-6 h-6 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-2">מרפסת פתוחה לנוף</h3>
+                    <p className="text-muted-foreground">
+                      תצפית מרהיבה על הנוף הכפרי
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-background rounded-xl border hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <Home className="w-6 h-6 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-2">שירותים ומקלחת</h3>
+                    <p className="text-muted-foreground">
+                      חדרי רחצה פרטיים ונקיים
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-background rounded-xl border hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <Heart className="w-6 h-6 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-2">פינת קפה</h3>
+                    <p className="text-muted-foreground">
+                      מקום מושלם לבוקר רגוע
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-6">חוויה ייחודית</h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                היחידה מאפשרת שקט וזמן להתבוננות פנימית. בסגנון מקומי עם שילוב
+                אבן וטיח, המקום מספק חוויה אותנטית ומרגיעה.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-8 mt-12">
+                <div className="text-center p-6 bg-card rounded-xl border">
+                  <Mountain className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">נוף כפרי</h3>
+                  <p className="text-muted-foreground">
+                    תצפית מרהיבה על הנוף הכפרי והטבע הסובב
+                  </p>
+                </div>
+
+                <div className="text-center p-6 bg-card rounded-xl border">
+                  <Heart className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">שקט ושלווה</h3>
+                  <p className="text-muted-foreground">
+                    מקום מושלם למנוחה, התבוננות והתחדשות
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Contact & Info Section */}
+        <section className="py-20 bg-card">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-4">מידע נוסף</h2>
+              <p className="text-lg text-muted-foreground">
+                לקבלת מידע נוסף והזמנות
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center p-6 bg-background rounded-xl border">
+                <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
+                <h3 className="font-medium mb-2">מיקום</h3>
+                <p className="text-muted-foreground">המרכז ממוקם בנוף הכפרי</p>
+              </div>
+
+              <div className="text-center p-6 bg-background rounded-xl border">
+                <Clock className="w-8 h-8 text-primary mx-auto mb-4" />
+                <h3 className="font-medium mb-2">שעות פעילות</h3>
+                <p className="text-muted-foreground">
+                  אירוח 24/7, כניסה מגיל 18
+                </p>
+              </div>
+
+              <div className="text-center p-6 bg-background rounded-xl border">
+                <Phone className="w-8 h-8 text-primary mx-auto mb-4" />
+                <h3 className="font-medium mb-2">צור קשר</h3>
+                <p className="text-muted-foreground">להזמנות ומידע נוסף</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-4">צור קשר</h2>
+              <p className="text-muted-foreground mb-8">
+                מוכנים לחוויית אירוח ייחודית? צרו קשר עכשיו
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div className="flex items-center gap-2">
+                  <Phone className="w-5 h-5 text-primary" />
+                  <span>054-1234567</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-primary" />
+                  <span>צ'ק-אין: 15:00 | צ'ק-אאוט: 11:00</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <span>השובך, צפון הארץ</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      </main>
+
+      {/* StickyFooter that sits behind the main content */}
+      <StickyFooter />
+    </div>
+  );
+}

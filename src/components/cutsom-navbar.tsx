@@ -11,6 +11,8 @@ export function CustomNavbar() {
   const navItems = [
     { label: "בית", to: "/" },
     { label: "אודותינו", to: "/pricing" },
+    { label: "צימר", to: "/zimmer" },
+    { label: "מרכז גוף-נפש", to: "/wellness-center" },
     { label: "עסקים באיזור", to: "/pricing" },
   ];
 

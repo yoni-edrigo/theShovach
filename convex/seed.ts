@@ -105,6 +105,10 @@ const businesses = [
   },
 ];
 
+// To seed images, use the seedImages mutation from images.ts:
+// import { seedImages } from "./images";
+// await seedImages({ images: [ { fileId: "<fileId>", alt: "Description" }, ... ] });
+
 export const seed = mutation({
   args: {},
   handler: async (ctx) => {

@@ -26,6 +26,7 @@ export function BookSection() {
   // Parallax effect for decorative elements
   const { scrollYProgress } = useScroll({
     target: sectionRef,
+    container: sectionRef,
     offset: ["start end", "end start"],
   });
 

@@ -3,33 +3,56 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Building2, Sparkles, Home } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-
-const services = [
-  {
-    quote:
-      "מסאז' רפואי מקצועי עם שמנים ארומתרפיים טבעיים. הטיפול מותאם אישית לכל לקוח ומשלב טכניקות מסורתיות עם ידע מודרני ליצירת חוויה מרגיעה ומחדשת. מתבצע בקליניקה המקצועית בקומה העליונה עם מיטת שיאצו, אבנים חמות ומיטת עיסוי.",
-    name: "מסאז' רפואי",
-    designation: "60-90 דקות",
-    src: "https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?q=80&w=1368&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote:
-      "אירוח בצימר פרטי בקומה התחתונה בסגנון מקומי עם אבן וטיח. מתאים לזוג או זוג עם ילד. כולל מטבחון מלא, שירותים ומקלחת, פינת קפה, מיטה זוגית, מזגן, פינת ישיבה ומרפסת לנוף. מקום מושלם לשקט והתבוננות פנימית.",
-    name: "צימר אירוח",
-    designation: "לילה/סוף שבוע",
-    src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote:
-      "סדנאות וטיפולים בקליניקה המקצועית בקומה העליונה. החדר מאובזר במטבחון, פינת קפה, שירותים, מקלחת ומיטת טיפול. כולל מגוון רחב של ספרים מתחום הטיפול ללמידה והתפתחות אישית.",
-    name: "קליניקה וסדנאות",
-    designation: "גמיש",
-    src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];
+import { useImages } from "@/lib/useImages";
+import { useMemo } from "react";
 
 export function ServicesSection() {
-  return (
+  const { images, isLoading } = useImages();
+
+  const services = useMemo(() => {
+    if (isLoading || !images) {
+      return null; // Return null when loading or if there are no images
+    }
+
+    // Use the first 3 images from the hook
+    const imgUrls = [0, 1, 2].map((i) => images[i]?.url || ""); // Add optional chaining and a fallback
+
+    return [
+      {
+        quote:
+          "מסאז' רפואי מקצועי עם שמנים ארומתרפיים טבעיים. הטיפול מותאם אישית לכל לקוח ומשלב טכניקות מסורתיות עם ידע מודרני ליצירת חוויה מרגיעה ומחדשת. מתבצע בקליניקה המקצועית בקומה העליונה עם מיטת שיאצו, אבנים חמות ומיטת עיסוי.",
+        name: "מסאז' רפואי",
+        designation: "60-90 דקות",
+        src: imgUrls[0],
+      },
+      {
+        quote:
+          "אירוח בצימר פרטי בקומה התחתונה בסגנון מקומי עם אבן וטיח. מתאים לזוג או זוג עם ילד. כולל מטבחון מלא, שירותים ומקלחת, פינת קפה, מיטה זוגית, מזגן, פינת ישיבה ומרפסת לנוף. מקום מושלם לשקט והתבוננות פנימית.",
+        name: "צימר אירוח",
+        designation: "לילה/סוף שבוע",
+        src: imgUrls[1],
+      },
+      {
+        quote:
+          "סדנאות וטיפולים בקליניקה המקצועית בקומה העליונה. החדר מאובזר במטבחון, פינת קפה, שירותים, מקלחת ומיטת טיפול. כולל מגוון רחב של ספרים מתחום הטיפול ללמידה והתפתחות אישית.",
+        name: "קליניקה וסדנאות",
+        designation: "גמיש",
+        src: imgUrls[2],
+      },
+    ];
+  }, [images, isLoading]);
+
+  if (isLoading || !services) {
+    return (
+      <section className="py-24 bg-gradient-to-b from-background to-muted/20">
+        <div className="container mx-auto px-4 place-items-center text-center">
+          <h2 className="text-3xl font-bold">Loading Services...</h2>
+        </div>
+      </section>
+    );
+  }
+
+  return services ? (
     <section className="py-24 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-4 place-items-center">
         {/* Header Section */}
@@ -106,5 +129,7 @@ export function ServicesSection() {
         </motion.div>
       </div>
     </section>
+  ) : (
+    <></>
   );
 }

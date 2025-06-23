@@ -14,6 +14,7 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as businesses from "../businesses.js";
+import type * as images from "../images.js";
 import type * as seed from "../seed.js";
 
 /**
@@ -26,6 +27,7 @@ import type * as seed from "../seed.js";
  */
 declare const fullApi: ApiFromModules<{
   businesses: typeof businesses;
+  images: typeof images;
   seed: typeof seed;
 }>;
 export declare const api: FilterApi<

@@ -11,4 +11,9 @@ export default defineSchema({
     image: v.string(), // For business image (from your data)
     categoryIds: v.array(v.id("business_categories")), // Array of category references
   }),
+  images: defineTable({
+    fileId: v.string(),
+    alt: v.string(),
+    // Add more metadata fields if needed
+  }),
 });

@@ -16,12 +16,13 @@ import {
 } from "lucide-react";
 import { motion, useScroll, useTransform, useInView } from "motion/react";
 import { Book3D } from "../3d-book/3dBook";
+import { CustomCursor3DBook } from "../3d-book/CustomCursor3DBook";
 
 export function BookSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
-  const isStatsInView = useInView(statsRef, { once: false, amount: 0.3 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
 
   // Parallax effect for decorative elements
   const { scrollYProgress } = useScroll({
@@ -117,6 +118,7 @@ export function BookSection() {
       position: "right",
     },
   ];
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <section
@@ -220,12 +222,14 @@ export function BookSection() {
           {/* Center Book */}
           <div className="flex justify-center items-center order-first md:order-none mb-8 md:mb-0">
             <motion.div
-              className="relative w-full max-w-xs"
+              className="relative w-full max-w-xs rotate-180"
               variants={itemVariants}
+              ref={containerRef}
             >
               <Book3D />
             </motion.div>
           </div>
+          <CustomCursor3DBook containerRef={containerRef} />
 
           {/* Right Column */}
           <div className="space-y-16">
@@ -261,13 +265,17 @@ export function BookSection() {
               התחל את המסע שלך לשלווה פנימית ובהירות מנטלית היום.
             </p>
           </div>
-          <motion.button
+          <motion.a
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg flex items-center gap-2 font-medium transition-colors shadow-sm"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            href="https://nivbook.co.il/product/%D7%A0%D7%94%D7%99%D7%92%D7%AA-%D7%97%D7%99%D7%99%D7%9A/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            התחל עכשיו <ArrowLeft className="w-4 h-4" />
-          </motion.button>
+            {"קנה עכשיו"}
+            <ArrowLeft className="w-4 h-4" />
+          </motion.a>
         </motion.div>
       </motion.div>
     </section>

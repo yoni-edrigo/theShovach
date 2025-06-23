@@ -4,7 +4,6 @@ import { Location } from "@/components/sections/location";
 import { StickyFooter } from "@/components/StickyFooter";
 import { createFileRoute } from "@tanstack/react-router";
 import { BookSection } from "@/components/sections/book";
-import { BornToSection } from "@/components/sections/bornTo";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -17,9 +16,7 @@ function Index() {
       <main className="relative z-10 min-h-screen bg-gradient-to-b from-yellow-50 to-orange-100 text-balance">
         <HeroSection />
         <ServicesSection />
-        <BornToSection />
         <BookSection />
-
         <Location />
       </main>
 

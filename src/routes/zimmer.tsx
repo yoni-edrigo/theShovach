@@ -17,10 +17,17 @@ import {
   Shield,
 } from "lucide-react";
 import { StickyFooter } from "@/components/StickyFooter";
+import { AnimatedGallery } from "@/components/AnimatedGallery";
 
 export const Route = createFileRoute("/zimmer")({
   component: RouteComponent,
 });
+
+const ZIMMER_PRICING = [
+  { title: "סוף שבוע", price: '400 ש"ח' },
+  { title: "אמצע שבוע", price: '300 ש"ח' },
+  { title: "נופש ארוך", price: "מחיר משתנה" },
+];
 
 function RouteComponent() {
   return (
@@ -28,7 +35,7 @@ function RouteComponent() {
       {/* Main content that sits on top of the footer */}
       <main className="relative z-10 min-h-screen bg-background pt-20 md:pt-0">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-primary/10 to-background">
+        <section className="relative pt-10 sm:pt-30 pb-10 bg-gradient-to-b from-primary/10 to-background">
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center"
@@ -46,10 +53,10 @@ function RouteComponent() {
         </section>
 
         {/* Zimmer Overview */}
-        <section className="py-20">
+        <section className="py-20 max-w-6xl mx-auto">
           <div className="container mx-auto px-4">
             <motion.div
-              className="grid lg:grid-cols-2 gap-12 items-center"
+              className="grid lg:grid-cols-2 gap-12 place-items-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -68,54 +75,60 @@ function RouteComponent() {
                   פתוחה לנוף. היחידה מאפשרת שקט וזמן להתבוננות פנימית.
                 </p>
 
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Users className="w-5 h-5 text-primary mt-1" />
-                    <div>
-                      <h3 className="font-medium mb-1">
-                        מתאים לזוג או זוג עם ילד
-                      </h3>
-                      <p className="text-muted-foreground">
-                        אירוח אינטימי ומשפחתי
-                      </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <Users className="w-5 h-5 text-primary mt-1" />
+                      <div>
+                        <h3 className="font-medium mb-1">
+                          מתאים לזוג או זוג עם ילד
+                        </h3>
+                        <p className="text-muted-foreground">
+                          אירוח אינטימי ומשפחתי
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Star className="w-5 h-5 text-primary mt-1" />
+                      <div>
+                        <h3 className="font-medium mb-1">אבזור ברמה גבוהה</h3>
+                        <p className="text-muted-foreground">
+                          כל מה שצריך לשהייה נוחה ומהנה
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Heart className="w-5 h-5 text-primary mt-1" />
+                      <div>
+                        <h3 className="font-medium mb-1">שקט וזמן להתבוננות</h3>
+                        <p className="text-muted-foreground">
+                          מקום מושלם למנוחה והתחדשות
+                        </p>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="flex items-start gap-3">
-                    <Star className="w-5 h-5 text-primary mt-1" />
-                    <div>
-                      <h3 className="font-medium mb-1">אבזור ברמה גבוהה</h3>
-                      <p className="text-muted-foreground">
-                        כל מה שצריך לשהייה נוחה ומהנה
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <Heart className="w-5 h-5 text-primary mt-1" />
-                    <div>
-                      <h3 className="font-medium mb-1">שקט וזמן להתבוננות</h3>
-                      <p className="text-muted-foreground">
-                        מקום מושלם למנוחה והתחדשות
-                      </p>
-                    </div>
-                  </div>
+                  <a
+                    href="https://wa.me/972587889868"
+                    target="_blank"
+                    className="inline-flex h-min w-fit
+                     items-center justify-center px-5 py-2 text-sm text-white bg-primary rounded-full
+                      hover:bg-gray-800 transition-colors mx-6"
+                    style={{ alignSelf: "end", justifySelf: "end" }}
+                  >
+                    להזמנה
+                  </a>
                 </div>
               </div>
 
-              <div className="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="צימר אירוח"
-                  className="rounded-xl shadow-lg"
-                />
+              <div className="relative w-full">
+                <AnimatedGallery />
               </div>
             </motion.div>
           </div>
         </section>
 
         {/* Amenities Section */}
-        <section className="py-20 bg-card">
+        <section className="py-20 bg-card max-w-6xl mx-auto">
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center mb-12"
@@ -210,6 +223,42 @@ function RouteComponent() {
               </div>
             </motion.div>
           </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section className="py-20 bg-background max-w-4xl mx-auto">
+          <motion.div
+            className="flex flex-col items-center md:items-start px-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-4">מחירים</h2>
+            <div className="w-full space-y-4">
+              {ZIMMER_PRICING.map((item, idx) => (
+                <div
+                  key={item.title}
+                  className={`flex justify-between items-center${
+                    idx < ZIMMER_PRICING.length - 1 ? " border-b pb-2" : ""
+                  }`}
+                >
+                  <span className="text-lg font-medium text-muted-foreground">
+                    {item.title}
+                  </span>
+                  <span
+                    className={`text-xl font-bold text-primary${
+                      item.price === "מחיר משתנה"
+                        ? " text-base font-normal"
+                        : ""
+                    }`}
+                  >
+                    {item.price}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </section>
 
         {/* Important Information Section */}

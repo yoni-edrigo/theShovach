@@ -6,8 +6,6 @@ export function useImages() {
   const images = useQuery(api.images.getImagesWithUrls, {});
   // useQuery returns undefined while loading
   const isLoading = images === undefined;
-  // Debugging logs
-  console.log("useImages hook:", { images, isLoading });
   // Convex useQuery does not provide error directly; handle as needed
   return { images: images ?? [], isLoading };
 }

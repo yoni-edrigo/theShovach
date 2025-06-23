@@ -5,6 +5,8 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useImages } from "@/lib/useImages";
 import { useMemo } from "react";
+import { Typewriter } from "../ui/typewriter";
+import { AnimatedGallery } from "@/components/AnimatedGallery";
 
 export function ServicesSection() {
   const { images, isLoading } = useImages();
@@ -15,7 +17,7 @@ export function ServicesSection() {
     }
 
     // Use the first 3 images from the hook
-    const imgUrls = [0, 1, 2].map((i) => images[i]?.url || ""); // Add optional chaining and a fallback
+    const imgUrls = [0, 1, 2, 3].map((i) => images[i]?.url || ""); // Add optional chaining and a fallback
 
     return [
       {
@@ -39,64 +41,74 @@ export function ServicesSection() {
         designation: "גמיש",
         src: imgUrls[2],
       },
+      {
+        quote:
+          "סדנאות וטיפולים בקליניקה המקצועית בקומה העליונה. החדר מאובזר במטבחון, פינת קפה, שירותים, מקלחת ומיטת טיפול. כולל מגוון רחב של ספרים מתחום הטיפול ללמידה והתפתחות אישית.",
+        name: "קליניקה וסדנאות",
+        designation: "גמיש",
+        src: imgUrls[3],
+      },
     ];
   }, [images, isLoading]);
 
-  if (isLoading || !services) {
-    return (
-      <section className="py-24 bg-gradient-to-b from-background to-muted/20">
-        <div className="container mx-auto px-4 place-items-center text-center">
-          <h2 className="text-3xl font-bold">Loading Services...</h2>
-        </div>
-      </section>
-    );
-  }
-
-  return services ? (
+  return (
     <section className="py-24 bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto px-4 place-items-center">
+      <div className="container mx-auto px-4 place-items-center flex flex-col gap-20">
         {/* Header Section */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <h3 className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4" />
             השירותים שלנו
-          </div>
-          <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-            חוויה ייחודית של ריפוי
-          </h2>
+          </h3>
+
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             מגוון רחב של טיפולים מקצועיים ואירוח ייחודי במרכז הבריאות שלנו,
             המשלב מסורת עתיקה עם טכנולוגיה מודרנית
           </p>
         </motion.div>
 
-        {/* Services Carousel */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
-          <CircularServices testimonials={services} />
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <CircularServices testimonials={services || []} />
+          </motion.div>
+
+          {/* Animated Gallery replaces images grid */}
+          <div className="flex items-center justify-center w-full">
+            <AnimatedGallery />
+          </div>
+        </div>
 
         {/* Simple Modern CTA Section */}
         <motion.div
-          className="bg-gradient-to-br from-card to-card/80 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 shadow-xl"
+          className="bg-secondary from-card to-card/80 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
         >
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold mb-4">מוכנים לחוויה ייחודית?</h3>
+            <h3 className="text-3xl font-bold mb-4">
+              {"מוכנים "}
+              <Typewriter
+                text={["לנוח?", "להתאהב?", "לחשוב?", "לחיות את הרגע?"]}
+                speed={70}
+                className="text-yellow-500"
+                waitTime={3000}
+                deleteSpeed={40}
+                cursorChar={"_"}
+              />
+            </h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               גלה את הטיפולים המקצועיים שלנו ואת יחידת האירוח הייחודית
             </p>
@@ -106,7 +118,7 @@ export function ServicesSection() {
             <Link to="/wellness-center">
               <Button
                 size="lg"
-                className="flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-4 rounded-xl transition-all duration-300"
+                className="flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-4 rounded-xl transition-all duration-300 cursor-pointer"
               >
                 <Building2 className="w-5 h-5" />
                 מרכז הטיפולים
@@ -118,7 +130,7 @@ export function ServicesSection() {
               <Button
                 variant="outline"
                 size="lg"
-                className="flex items-center gap-3 border-2 border-border hover:border-primary/50 font-semibold px-8 py-4 rounded-xl transition-all duration-300"
+                className="flex items-center gap-3 border-2 border-border hover:border-primary/50 font-semibold px-8 py-4 rounded-xl transition-all duration-300 cursor-pointer"
               >
                 <Home className="w-5 h-5" />
                 יחידת האירוח
@@ -129,7 +141,5 @@ export function ServicesSection() {
         </motion.div>
       </div>
     </section>
-  ) : (
-    <></>
   );
 }

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { StickyFooter } from "@/components/StickyFooter";
 import { AnimatedGallery } from "@/components/AnimatedGallery";
+import { useRef } from "react";
 
 export const Route = createFileRoute("/zimmer")({
   component: RouteComponent,
@@ -30,12 +31,18 @@ const ZIMMER_PRICING = [
 ];
 
 function RouteComponent() {
+  const orderLinkRef = useRef<HTMLAnchorElement | null>(null);
+  const contactSectionRef = useRef<HTMLDivElement | null>(null);
+
   return (
     <div className="relative">
       {/* Main content that sits on top of the footer */}
       <main className="relative z-10 min-h-screen bg-background pt-20 md:pt-0">
         {/* Hero Section */}
-        <section className="relative pt-10 sm:pt-30 pb-10 bg-gradient-to-b from-primary/10 to-background">
+        <section
+          className="relative pt-10 sm:pt-30 pb-10 bg-gradient-to-b from-primary/10 to-background"
+          ref={contactSectionRef}
+        >
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center"
@@ -108,11 +115,10 @@ function RouteComponent() {
                     </div>
                   </div>
                   <a
+                    ref={orderLinkRef}
                     href="https://wa.me/972587889868"
                     target="_blank"
-                    className="inline-flex h-min w-fit
-                     items-center justify-center px-5 py-2 text-sm text-white bg-primary rounded-full
-                      hover:bg-gray-800 transition-colors mx-6"
+                    className="inline-flex h-min w-[60vw] max-w-xs sm:w-fit items-center justify-center px-5 py-2 text-sm text-white bg-primary rounded-full hover:bg-gray-800 transition-colors mx-auto sm:mx-6 mt-4 sm:mt-0"
                     style={{ alignSelf: "end", justifySelf: "end" }}
                   >
                     להזמנה

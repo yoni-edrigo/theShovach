@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import type { RefObject } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Maximize2 } from "lucide-react";
 import { useImages } from "@/lib/useImages";
 
@@ -12,6 +12,9 @@ export const AnimatedGallery: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   // Track if mouse is over the enlarge button
   const [overButton, setOverButton] = useState(false);
+
+  // Track previous index for crossfade
+  const [prevIndex, setPrevIndex] = useState(0);
 
   const variants = {
     enter: (direction: number) => ({
@@ -40,12 +43,44 @@ export const AnimatedGallery: React.FC = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
+  // Preload all images on mount
+  useEffect(() => {
+    if (images.length === 0) return;
+    images.forEach((img) => {
+      const preloadImg = new window.Image();
+      preloadImg.src = img.url;
+    });
+  }, [images]);
+
+  // Update previous index on current index change
+  useEffect(() => {
+    if (currentIndex !== prevIndex) {
+      setPrevIndex(currentIndex);
+    }
+  }, [currentIndex, prevIndex]);
+
+  // Loading state for main image
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const mainImgRef = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    setImgLoaded(false);
+  }, [currentIndex, images]);
+
+  // Ensure imgLoaded is set to true if image is already cached/loaded
+  useEffect(() => {
+    const img = mainImgRef.current;
+    if (img && img.complete) {
+      setImgLoaded(true);
+    }
+  }, [currentIndex, images]);
+
   return (
     <div className="relative h-full w-full flex flex-col items-center px-2 sm:px-0">
       {/* Floating enlarge button - absolutely positioned over gallery, not in gallery HTML tree */}
       <div className="absolute top-4 left-0 z-30 p-2 sm:p-6 pointer-events-none w-full flex justify-end">
         <button
-          className="bg-white/80 hover:bg-white text-primary rounded-full p-2 shadow transition pointer-events-auto"
+          className="bg-white/80 hover:bg-white text-primary rounded-full p-2 shadow transition pointer-events-auto cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             setShowModal(true);
@@ -66,9 +101,24 @@ export const AnimatedGallery: React.FC = () => {
       />
       <div
         ref={containerRef}
-        className="w-full max-w-xs sm:max-w-none h-72 sm:h-[30rem] border-4 rounded-3xl flex items-center justify-center mx-auto mt-4 overflow-hidden relative bg-[#f5f5f5]"
+        className="w-full max-w-xs sm:max-w-none h-72 sm:h-[30rem] border-4 rounded-3xl flex items-center justify-center mx-auto mt-4 overflow-hidden relative bg-[#f5f5f5] aspect-[4/3]"
       >
         <AnimatePresence initial={false} custom={direction}>
+          {/* Previous image stays until new one is loaded */}
+          {prevIndex !== currentIndex && (
+            <motion.img
+              key={`prev-${prevIndex}`}
+              src={images[prevIndex]?.url}
+              alt={images[prevIndex]?.alt || `gallery image ${prevIndex + 1}`}
+              className="object-cover w-full h-full rounded-3xl absolute top-0 left-0 transition-opacity duration-300 opacity-100"
+              draggable={false}
+              style={{ zIndex: 1 }}
+              initial={{ scale: 1, opacity: 1 }}
+              animate={{ scale: 1, opacity: imgLoaded ? 0 : 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            />
+          )}
           <motion.div
             key={currentIndex}
             custom={direction}
@@ -76,27 +126,49 @@ export const AnimatedGallery: React.FC = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ opacity: { duration: 0.2 } }}
+            transition={{
+              opacity: { duration: 0.2 },
+              scale: { duration: 0.4 },
+            }}
             className="w-full h-full flex items-center justify-center absolute"
+            style={{ overflow: "hidden", zIndex: 2 }}
           >
-            <img
+            {/* Skeleton/blurred placeholder while loading */}
+            {!imgLoaded && (
+              <div className="absolute inset-0 w-full h-full bg-gray-200 animate-pulse rounded-3xl z-10 aspect-[4/3]" />
+            )}
+            <motion.img
+              ref={mainImgRef}
               src={images[currentIndex]?.url}
               alt={
                 images[currentIndex]?.alt || `gallery image ${currentIndex + 1}`
               }
-              className="object-cover w-full h-full rounded-3xl"
+              className={`object-cover w-full h-full rounded-3xl transition-opacity duration-300 ${imgLoaded ? "opacity-100" : "opacity-0"}`}
               draggable={false}
+              onLoad={() => setImgLoaded(true)}
+              loading="eager"
+              initial={{ scale: 0.96, opacity: 0 }}
+              animate={{
+                scale: imgLoaded ? 1 : 0.96,
+                opacity: imgLoaded ? 1 : 0,
+              }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute h-10 w-fit flex items-center gap-1 left-0 right-0 mx-auto bottom-2 z-10">
-          {Array.from({ length: images.length }).map((_, index) => (
-            <motion.div
-              key={index}
-              animate={{ width: index === currentIndex ? 40 : 8 }}
-              className="h-2 min-w-2 bg-white/80 rounded-full transition-all duration-300"
-            />
-          ))}
+        <div className="absolute h-10 w-fit flex items-center gap-1 left-0 right-0 mx-auto bottom-2 z-10 flex-row-reverse">
+          {Array.from({ length: images.length })
+            .map((_, index) => index)
+            .reverse()
+            .map((index) => (
+              <motion.div
+                key={index}
+                animate={{
+                  width: index === images.length - 1 - currentIndex ? 40 : 8,
+                }}
+                className="h-2 min-w-2 bg-white/80 rounded-full transition-all duration-300"
+              />
+            ))}
         </div>
       </div>
       {/* Modal for large image with smooth transition */}
@@ -121,6 +193,7 @@ export const AnimatedGallery: React.FC = () => {
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
+              loading="eager"
             />
           </motion.div>
         )}

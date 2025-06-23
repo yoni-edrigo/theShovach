@@ -41,8 +41,8 @@ export function BookSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.05,
+        delayChildren: 0.2,
       },
     },
   };
@@ -316,7 +316,7 @@ function BenefitItem({
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
     >
       <motion.div
-        className="flex items-center gap-3 mb-3"
+        className="flex flex-col sm:flex-row items-center gap-3 mb-3"
         initial={{ x: direction === "left" ? -20 : 20, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: delay + 0.2 }}
@@ -336,7 +336,7 @@ function BenefitItem({
         </h3>
       </motion.div>
       <motion.p
-        className="text-sm text-[#202e44]/80 leading-relaxed pl-12"
+        className="text-sm text-[#202e44]/80 leading-relaxed sm:px-12 text-center sm:text-start"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: delay + 0.4 }}

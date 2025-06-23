@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useImages } from "@/lib/useImages";
 
 // Helper to get a random color for background (could be improved with color-thief)

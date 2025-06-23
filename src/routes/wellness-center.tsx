@@ -15,18 +15,26 @@ import {
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { StickyFooter } from "@/components/StickyFooter";
+import { useRef } from "react";
+import { AnimatedGallery } from "@/components/AnimatedGallery";
 
 export const Route = createFileRoute("/wellness-center")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
+  const heroSectionRef = useRef<HTMLDivElement | null>(null);
+  const orderLinkRef = useRef<HTMLAnchorElement | null>(null);
+
   return (
     <div className="relative">
       {/* Main content that sits on top of the footer */}
       <main className="relative z-10 min-h-screen bg-background pt-20 md:pt-0">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-primary/10 to-background">
+        <section
+          className="relative py-20 bg-gradient-to-b from-primary/10 to-background"
+          ref={heroSectionRef}
+        >
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center"
@@ -114,14 +122,21 @@ function RouteComponent() {
                     </div>
                   </div>
                 </div>
+                <div className="flex w-full justify-center md:justify-end mt-6">
+                  <a
+                    ref={orderLinkRef}
+                    href="https://wa.me/972587889868"
+                    target="_blank"
+                    className="inline-flex h-min w-[60vw] max-w-xs sm:w-fit items-center justify-center px-5 py-2 text-sm text-white bg-primary rounded-full hover:bg-gray-800 transition-colors"
+                    style={{ alignSelf: "end", justifySelf: "end" }}
+                  >
+                    להזמנה
+                  </a>
+                </div>
               </div>
 
               <div className="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="קליניקה"
-                  className="rounded-xl shadow-lg"
-                />
+                <AnimatedGallery />
               </div>
             </motion.div>
           </div>

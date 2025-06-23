@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
 interface BookCursorProps {
@@ -7,7 +7,10 @@ interface BookCursorProps {
   disabled?: boolean;
 }
 
-export const BookCursor: React.FC<BookCursorProps> = ({ containerRef, disabled = false }) => {
+export const BookCursor: React.FC<BookCursorProps> = ({
+  containerRef,
+  disabled = false,
+}) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isInside, setIsInside] = useState(false);
 
@@ -49,9 +52,13 @@ export const BookCursor: React.FC<BookCursorProps> = ({ containerRef, disabled =
               boxShadow: [
                 "0 0 0 0 rgba(136,115,76,0.3)",
                 "0 0 0 10px rgba(136,115,76,0.1)",
-                "0 0 0 0 rgba(136,115,76,0.3)"
+                "0 0 0 0 rgba(136,115,76,0.3)",
               ],
-              transition: { duration: 1.2, repeat: Infinity, ease: "easeInOut" }
+              transition: {
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              },
             }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >

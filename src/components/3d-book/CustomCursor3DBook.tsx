@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import type { RefObject } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { LifeBuoyIcon } from "lucide-react";
 
 interface CustomCursor3DBookProps {

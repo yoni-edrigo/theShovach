@@ -24,7 +24,7 @@ export function HeroSection() {
         style={{ gridArea: "area" }}
         className="grid place-content-center text-center z-10"
       >
-        <h1 className="text-white font-black text-[20vw] absolute -top-20 sm:static drop-shadow-lg font-hug-regular">
+        <h1 className="text-white font-black text-[30vw] sm:text-[20vw] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:relative drop-shadow-lg font-hug-regular">
           השובך
         </h1>
 
